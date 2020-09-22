@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3f07e926-fc79-41d0-85e3-fdb611bb6ab4" activeEnvironment="Default" name="dilbert" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2562c2e1-e44b-4f01-a8a1-2cc020675236" wsaVersion="NONE" name="DilbertSoap12" type="wsdl" bindingName="{http://gcomputer.net/webservices/}DilbertSoap12" soapVersion="1_2" anonymous="optional" definition="http://www.gcomputer.net/webservices/dilbert.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint></con:endpoints><con:operation id="e9399157-1fff-40f9-a8b7-671b8947c9c5" isOneWay="false" action="http://gcomputer.net/webservices/DailyDilbert" name="DailyDilbert" bindingOperationName="DailyDilbert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="17446c8f-4136-4281-905a-e8ac88dd4843" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://gcomputer.net/webservices/">
+   <soap:Header/>
+   <soap:Body>
+      <web:DailyDilbert>
+         <web:ADate>123</web:ADate>
+      </web:DailyDilbert>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://gcomputer.net/webservices/DilbertSoap/DailyDilbertRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ce5392dd-a54f-406c-bb02-5ce80ce6a12b" isOneWay="false" action="http://gcomputer.net/webservices/TodaysDilbert" name="TodaysDilbert" bindingOperationName="TodaysDilbert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8ee744a4-facf-49d0-9215-6e547efe2590" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://gcomputer.net/webservices/">
+   <soap:Header/>
+   <soap:Body>
+      <web:TodaysDilbert/>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://gcomputer.net/webservices/DilbertSoap/TodaysDilbertRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="37a586a7-e7be-4bb2-ad94-6f4caaf745e1" wsaVersion="NONE" name="DilbertSoap" type="wsdl" bindingName="{http://gcomputer.net/webservices/}DilbertSoap" soapVersion="1_1" anonymous="optional" definition="http://www.gcomputer.net/webservices/dilbert.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://www.gcomputer.net/webservices/dilbert.asmx?WSDL"><con:part><con:url>http://www.gcomputer.net/webservices/dilbert.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://gcomputer.net/webservices/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://gcomputer.net/webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://gcomputer.net/webservices/">
+      <s:element name="TodaysDilbert">
+        <s:complexType/>
+      </s:element>
+      <s:element name="TodaysDilbertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TodaysDilbertResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DailyDilbert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DailyDilbertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DailyDilbertResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TodaysDilbertSoapIn">
+    <wsdl:part name="parameters" element="tns:TodaysDilbert"/>
+  </wsdl:message>
+  <wsdl:message name="TodaysDilbertSoapOut">
+    <wsdl:part name="parameters" element="tns:TodaysDilbertResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DailyDilbertSoapIn">
+    <wsdl:part name="parameters" element="tns:DailyDilbert"/>
+  </wsdl:message>
+  <wsdl:message name="DailyDilbertSoapOut">
+    <wsdl:part name="parameters" element="tns:DailyDilbertResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="DilbertSoap">
+    <wsdl:operation name="TodaysDilbert">
+      <wsdl:input message="tns:TodaysDilbertSoapIn"/>
+      <wsdl:output message="tns:TodaysDilbertSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DailyDilbert">
+      <wsdl:input message="tns:DailyDilbertSoapIn"/>
+      <wsdl:output message="tns:DailyDilbertSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DilbertSoap" type="tns:DilbertSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TodaysDilbert">
+      <soap:operation soapAction="http://gcomputer.net/webservices/TodaysDilbert" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DailyDilbert">
+      <soap:operation soapAction="http://gcomputer.net/webservices/DailyDilbert" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DilbertSoap12" type="tns:DilbertSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TodaysDilbert">
+      <soap12:operation soapAction="http://gcomputer.net/webservices/TodaysDilbert" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DailyDilbert">
+      <soap12:operation soapAction="http://gcomputer.net/webservices/DailyDilbert" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Dilbert">
+    <wsdl:port name="DilbertSoap" binding="tns:DilbertSoap">
+      <soap:address location="http://www.gcomputer.net/webservices/dilbert.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="DilbertSoap12" binding="tns:DilbertSoap12">
+      <soap12:address location="http://www.gcomputer.net/webservices/dilbert.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint></con:endpoints><con:operation id="6e0ffab8-201f-4707-ad1b-f4bb6910094f" isOneWay="false" action="http://gcomputer.net/webservices/DailyDilbert" name="DailyDilbert" bindingOperationName="DailyDilbert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64d434d7-6f43-481d-bdcb-4c8653a06b81" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://gcomputer.net/webservices/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:DailyDilbert>
+         <web:ADate>2020-10-10</web:ADate>
+      </web:DailyDilbert>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://gcomputer.net/webservices/DailyDilbert"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="05bca1e0-a3be-4185-be0a-b6870e41c6b8" isOneWay="false" action="http://gcomputer.net/webservices/TodaysDilbert" name="TodaysDilbert" bindingOperationName="TodaysDilbert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e4a4839a-5045-4f77-8f07-f165ef6f6208" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.gcomputer.net/webservices/dilbert.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://gcomputer.net/webservices/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:TodaysDilbert/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://gcomputer.net/webservices/TodaysDilbert"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
