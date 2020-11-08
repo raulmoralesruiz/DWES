@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Home</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="../index.html">
+            <h1>Netflix - Home</h1>
+        </a>
+    </header>
+
+
+    <div id="div-formulario">
+
+        <form action="">
+
+            <h1 id="titleActiveUser">Active user</h1>
+
+            <div id="divSuscription" class="oculto">
+                <label id="labSuscription" for="suscription">Elige suscripción:</label>
+                <select required name="suscription" id="selectTipeSuscription">
+                    <option disabled selected value>Selecciona una opción</option>
+                    <option value="BASIC">Básica</option>
+                    <option value="PREMIUM">Premium</option>
+                </select>
+            </div>
+
+
+
+            <div id="divTablaProductos" class="divTabla oculto">
+                <label id="labProducts" for="products">Productos disponibles:</label>
+                <table id="tablaProductos" class="tabla">
+                    <tr>
+                        <th>Product</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Tipe content</th>
+                        <th>Tipe suscription</th>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div id="divTablaVisuals" class="divTabla">
+                <label id="labVisuals" for="visuals">Historial de visualizaciones:</label>
+                <table id="tablaVisuals" class="tabla">
+                    <!-- class="oculto" -->
+                    <tr>
+                        <th>Visual</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Product</th>
+                        <th>Customer</th>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <!-- <label id="labUser" for="user">Usuario:</label>
+            <input type="text" name="user" id="user" placeholder="Introduce usuario">
+
+
+            <div id="divLogin" class="divBotones">
+                <button id="botonLogin">Acceder</button>
+            </div>
+
+
+            <label id="labName" for="name">Nombre:</label>
+            <input type="text" name="name" id="name" placeholder="Introduce nombre">
+
+            <label id="labSurname" for="surname">Apellidos:</label>
+            <input type="text" name="surname" id="surname" placeholder="Introduce apellidos">
+
+            <label id="labAddress" for="address">Dirección:</label>
+            <input type="text" name="address" id="address" placeholder="Introduce dirección">
+
+            <label id="labCity" for="city">Ciudad:</label>
+            <input type="text" name="city" id="city" placeholder="Introduce ciudad">
+
+            <label id="labDni" for="dni">DNI:</label>
+            <input type="text" name="dni" id="dni" placeholder="Introduce DNI">
+
+            <div id="divRegistro" class="divBotones">
+                <button id="botonRegistro">Registrarse</button>
+            </div> -->
+
+        </form>
+
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
