@@ -9,6 +9,10 @@ const tablaProductos = document.getElementById('tablaProductos');
 const divTablaVisuals = document.getElementById('divTablaVisuals');
 const tablaVisuals = document.getElementById('tablaVisuals');
 
+const divWatchProduct = document.getElementById('divWatchProduct');
+const selectProduct = document.getElementById('selectProduct');
+const botonShowVisuals = document.getElementById('botonShowVisuals');
+
 
 // Se definen los diferentes enlaces para realizar GET/POST
 const url = "http://localhost:8080/netflix/";
@@ -163,6 +167,10 @@ const showProducts = () => {
 
     if (suscription == "BASIC" || suscription == "PREMIUM") {
 
+        // Eliminar clase oculto para mostrar div de visionado de productos.
+        divWatchProduct.classList.remove("oculto");
+
+        // Asignación de URL según tipo de suscripción.
         if (suscription == "BASIC") {
             urlFinal = urlBasic;
         } else {
@@ -214,6 +222,19 @@ const showProducts = () => {
 
                     // Se inserta la fila creada en la tablaProductos
                     tablaProductos.appendChild(tr);
+
+
+                    // ------ Desplegable - Select -------
+                    // Se crea un elemento de tipo option
+                    let opt = document.createElement("option");
+
+                    // se asigna al objeto el valor y el texto mostrado en html
+                    opt.value = id;
+                    opt.textContent = title;
+
+                    // Se inserta el objeto en el desplegable de categorías.
+                    selectProduct.appendChild(opt);
+
                 }
 
             })
@@ -242,7 +263,13 @@ showProducts();
 // Mostrar productos diposnibles según tipo de suscripción.
 const showVisuals = () => {
 
-    let hayVisualizaciones = false;
+    // Se eliminan las celdas cada vez que se pulsa el botón GET DATA
+    let celdas = document.getElementsByClassName("celdaVisual");
+    while (celdas.length) celdas[0].parentElement.removeChild(celdas[0]);
+
+    // Se elimina la clase oculto para mostrar la tabla
+    divTablaVisuals.classList.remove("oculto");
+
 
     const idActiveUser = sessionStorage.getItem('idActiveUser');
     const urlCustomerVisuals = `http://localhost:8080/netflix/visual/c${idActiveUser}`;
@@ -269,7 +296,7 @@ const showVisuals = () => {
 
                 // Se crea un objeto de tipo "tr" (fila) y se le añade la clase "celda"
                 let tr = document.createElement("tr");
-                tr.classList.add("celda");
+                tr.classList.add("celdaVisual");
 
                 // Se crean las celdas para cada campo
                 let tdIdVisual = document.createElement("td");
@@ -298,10 +325,69 @@ const showVisuals = () => {
 
         })
         .catch(error => {
-            /* Si el cliente no tiene visualizaciones se oculta la tabla visuals */
-            divTablaVisuals.classList.add("oculto");
-        })
+            console.log(error);
+            // if (error == 'Error: 400') {
+            //     alert(error + `. Faltan campos por rellenar.`);
+            // } else if (error == 'Error: 409') {
+            //     alert(error + `. El producto introducido ya existe.`);
+            // }
+        });
 
 }
 
-showVisuals();
+// showVisuals();
+
+
+
+botonShowVisuals.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    showVisuals();
+});
+
+
+
+selectProduct.addEventListener('change', (e) => {
+    const idProduct = selectProduct.value;
+    const idActiveUser = sessionStorage.getItem('idActiveUser');
+
+    const urlVisual = `http://localhost:8080/netflix/visual/c${idActiveUser}/p${idProduct}`;
+
+
+    // Se realiza fetch (POST) para insertar la visualización
+    fetch(urlVisual, {
+            // se especifica el tipo de método
+            method: 'POST',
+            // se especifica el cuerpo del json (valores obtenidos antes)
+            body: JSON.stringify({
+                inicio: "2020-01-01T01:00:00",
+                fin: "2021-01-01T01:00:00"
+            }),
+            // se especifica en la cabecera que el tipo de contenido es json
+            headers: {
+                "Content-type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+        // Si hay algún error, guardamos el código correspondiente.
+        .then(res => {
+            if (!res.ok) throw Error(res.status);
+            return res;
+        })
+        // Se obtiene promesa, tanto si el resultado es correcto o da error
+        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(res))
+        // Se muestra resultado en formato JSON
+        .then(res => res.json())
+        // Se informa mediante alerta si el producto se ha creado correctamente.
+        .then(res => alert("Visualización creada correctamente."))
+        // Se informa mediante alerta si el producto no se ha creado correctamente.
+        .catch(error => {
+            console.log(error);
+            // if (error == 'Error: 400') {
+            //     alert(error + `. Faltan campos por rellenar.`);
+            // } else if (error == 'Error: 409') {
+            //     alert(error + `. El producto introducido ya existe.`);
+            // }
+        });
+
+});

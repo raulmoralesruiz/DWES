@@ -117,6 +117,8 @@ botonRegistro.addEventListener('click', (e) => {
             });
     }
 
+    location.reload();
+
 });
 
 

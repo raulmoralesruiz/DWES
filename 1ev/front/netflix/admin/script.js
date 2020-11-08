@@ -1,17 +1,27 @@
 // Se definen los botones del formulario
+
+// ----- GET
 const botonGetCustomers = document.getElementById('botonGetCustomers');
 const botonGetProducts = document.getElementById('botonGetProducts');
 const botonGetVisuals = document.getElementById('botonGetVisuals');
 const botonGetSuscriptions = document.getElementById('botonGetSuscriptions');
 
+// ----- POST
+const botonPostProduct = document.getElementById('botonPostProduct');
 
-// Se define el objeto tabla
-const tabla = document.getElementById('tablaListado');
+
+
+
+// Se definen los objetos tabla
+const tabla = document.getElementById('tablaListado'); /* Borrar cuando se creen todas las específicas */
+const tablaCustomers = document.getElementById('tablaCustomers');
+const tablaProducts = document.getElementById('tablaProducts');
+const tablaVisuals = document.getElementById('tablaVisuals');
+const tablaSuscriptions = document.getElementById('tablaSuscriptions');
 
 
 // Se definen los diferentes enlaces para realizar GET/POST
 const url = "http://localhost:8080/netflix";
-
 
 
 
@@ -25,7 +35,12 @@ botonGetCustomers.addEventListener('click', (e) => {
     while (celdas.length) celdas[0].parentElement.removeChild(celdas[0]);
 
     // Se elimina la clase oculto para mostrar la tabla
-    tabla.classList.remove("oculto");
+    tablaCustomers.classList.remove("oculto");
+
+    // Se ocultan las demás tablas
+    tablaProducts.classList.add("oculto");
+    tablaVisuals.classList.add("oculto");
+    tablaSuscriptions.classList.add("oculto");
 
 
     // Se realiza Fetch (GET) para obtener las categorías.
@@ -41,6 +56,7 @@ botonGetCustomers.addEventListener('click', (e) => {
                 let customer = res[i];
 
                 // Se guardan los valores correspondientes para cada campo
+                let idCustomer = customer.id;
                 let username = customer.username;
                 let name = customer.name;
                 let surname = customer.surname;
@@ -53,6 +69,7 @@ botonGetCustomers.addEventListener('click', (e) => {
                 tr.classList.add("celda");
 
                 // Se crean las celdas para cada campo
+                let tdIdCustomer = document.createElement("td");
                 let tdUsername = document.createElement("td");
                 let tdName = document.createElement("td");
                 let tdSurname = document.createElement("td");
@@ -61,6 +78,7 @@ botonGetCustomers.addEventListener('click', (e) => {
                 let tdDni = document.createElement("td");
 
                 // Se asigna el valor a cada campo
+                tdIdCustomer.textContent = idCustomer;
                 tdUsername.textContent = username;
                 tdName.textContent = name;
                 tdSurname.textContent = surname;
@@ -69,6 +87,7 @@ botonGetCustomers.addEventListener('click', (e) => {
                 tdDni.textContent = dni;
 
                 // Se inserta cada celda en la fila creada
+                tr.appendChild(tdIdCustomer);
                 tr.appendChild(tdUsername);
                 tr.appendChild(tdName);
                 tr.appendChild(tdSurname);
@@ -77,7 +96,7 @@ botonGetCustomers.addEventListener('click', (e) => {
                 tr.appendChild(tdDni);
 
                 // Se inserta la fila creada en la tabla
-                tabla.appendChild(tr);
+                tablaCustomers.appendChild(tr);
 
                 //BORRAR
                 // console.log(customer);
@@ -95,7 +114,12 @@ botonGetProducts.addEventListener('click', (e) => {
     while (celdas.length) celdas[0].parentElement.removeChild(celdas[0]);
 
     // Se elimina la clase oculto para mostrar la tabla
-    tabla.classList.remove("oculto");
+    tablaProducts.classList.remove("oculto");
+
+    // Se ocultan las demás tablas
+    tablaCustomers.classList.add("oculto");
+    tablaVisuals.classList.add("oculto");
+    tablaSuscriptions.classList.add("oculto");
 
 
     // Se realiza Fetch (GET) para obtener las categorías.
@@ -143,7 +167,7 @@ botonGetProducts.addEventListener('click', (e) => {
                 tr.appendChild(tdTypeSuscription);
 
                 // Se inserta la fila creada en la tabla
-                tabla.appendChild(tr);
+                tablaProducts.appendChild(tr);
 
                 //BORRAR
                 // console.log(product);
@@ -161,7 +185,12 @@ botonGetSuscriptions.addEventListener('click', (e) => {
     while (celdas.length) celdas[0].parentElement.removeChild(celdas[0]);
 
     // Se elimina la clase oculto para mostrar la tabla
-    tabla.classList.remove("oculto");
+    tablaSuscriptions.classList.remove("oculto");
+
+    // Se ocultan las demás tablas
+    tablaCustomers.classList.add("oculto");
+    tablaVisuals.classList.add("oculto");
+    tablaProducts.classList.add("oculto");
 
 
     // Se realiza Fetch (GET) para obtener las categorías.
@@ -209,7 +238,7 @@ botonGetSuscriptions.addEventListener('click', (e) => {
                 tr.appendChild(tdIdCustomer);
 
                 // Se inserta la fila creada en la tabla
-                tabla.appendChild(tr);
+                tablaSuscriptions.appendChild(tr);
 
                 //BORRAR
                 // console.log(suscription);
@@ -227,7 +256,12 @@ botonGetVisuals.addEventListener('click', (e) => {
     while (celdas.length) celdas[0].parentElement.removeChild(celdas[0]);
 
     // Se elimina la clase oculto para mostrar la tabla
-    tabla.classList.remove("oculto");
+    tablaVisuals.classList.remove("oculto");
+
+    // Se ocultan las demás tablas
+    tablaCustomers.classList.add("oculto");
+    tablaProducts.classList.add("oculto");
+    tablaSuscriptions.classList.add("oculto");
 
 
     // Se realiza Fetch (GET) para obtener las categorías.
@@ -275,11 +309,60 @@ botonGetVisuals.addEventListener('click', (e) => {
                 tr.appendChild(tdIdCustomer);
 
                 // Se inserta la fila creada en la tabla
-                tabla.appendChild(tr);
+                tablaVisuals.appendChild(tr);
 
                 //BORRAR
                 // console.log(visual);
             }
         });
 
+});
+
+
+
+// Botón que crea un producto (se inserta mediante post en spring)
+botonPostProduct.addEventListener('click', () => {
+
+    // Se guardan los valores de cada campo insertados en el formulario
+    const inputTitle = document.getElementById('title').value;
+    const inputCategory = document.getElementById('selectCategory').value;
+    const inputContent = document.getElementById('selectTipeContent').value;
+    const inputSuscription = document.getElementById('selectTipeSuscription').value;
+
+    // Se realiza fetch (POST) para insertar el producto
+    fetch(`${url}/products/`, {
+            // se especifica el tipo de método
+            method: 'POST',
+            // se especifica el cuerpo del json (valores obtenidos antes)
+            body: JSON.stringify({
+                // idProduct: inputId, (ID autogenerado)
+                title: inputTitle,
+                categoria: inputCategory,
+                tipoContenido: inputContent,
+                tipoSuscripcion: inputSuscription
+            }),
+            // se especifica en la cabecera que el tipo de contenido es json
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        // Si hay algún error, guardamos el código correspondiente.
+        .then(res => {
+            if (!res.ok) throw Error(res.status);
+            return res;
+        })
+        // Se obtiene promesa, tanto si el resultado es correcto o da error
+        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(res))
+        // Se muestra resultado en formato JSON
+        .then(res => res.json())
+        // Se informa mediante alerta si el producto se ha creado correctamente.
+        .then(res => alert("Producto creado correctamente."))
+        // Se informa mediante alerta si el producto no se ha creado correctamente.
+        .catch(error => {
+            if (error == 'Error: 400') {
+                alert(error + `. Faltan campos por rellenar.`);
+            } else if (error == 'Error: 409') {
+                alert(error + `. El producto introducido ya existe.`);
+            }
+        });
 });

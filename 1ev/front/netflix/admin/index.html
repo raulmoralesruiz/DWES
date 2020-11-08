@@ -21,13 +21,50 @@
 
         <form action="">
 
-            <div id="divLogin" class="divBotones">
+            <div id="divGet" class="divBotones">
                 <h1>GET</h1>
                 <button id="botonGetCustomers">Customers</button>
                 <button id="botonGetProducts">Products</button>
                 <button id="botonGetVisuals">Visuals</button>
                 <button id="botonGetSuscriptions">Suscriptions</button>
             </div>
+
+            <div id="divPostProduct" class="divBotones">
+                <h1>POST - Product</h1>
+
+                <label id="labTitle" for="title">Title:</label>
+                <input type="text" name="title" id="title" placeholder="Enter title">
+
+
+                <label id="labCategory" for="category">Category:</label>
+                <select required name="category" id="selectCategory">
+                    <option disabled selected value>Select an option</option>
+                    <option value="SCIFI">Sci-Fi</option>
+                    <option value="DRAMA">Drama</option>
+                    <option value="TERROR">Terror</option>
+                    <option value="ACTION">Action</option>
+                    <option value="COMEDIA">Comedy</option>
+                </select>
+
+
+                <label id="labTipeContent" for="tipeContent">Content type:</label>
+                <select required name="tipeContent" id="selectTipeContent">
+                    <option disabled selected value>Select an option</option>
+                    <option value="MOVIE">Movie</option>
+                    <option value="SERIE">Series</option>
+                </select>
+
+
+                <label id="labTipeSuscription" for="tipeSuscription">Suscription type:</label>
+                <select required name="tipeSuscription" id="selectTipeSuscription">
+                    <option disabled selected value>Select an option</option>
+                    <option value="BASIC">Basic</option>
+                    <option value="PREMIUM">Premium</option>
+                </select>
+
+                <button id="botonPostProduct" class="margenBoton">Create product</button>
+            </div>
+
 
 
         </form>
@@ -41,6 +78,60 @@
                     <th>Tipe content</th>
                     <th>Tipe suscription</th>
                 </tr> -->
+            </table>
+        </div>
+
+
+        <div id="divTablaCustomers" class="divTabla">
+            <table id="tablaCustomers" class="tabla oculto">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>DNI</th>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="divTablaProducts" class="divTabla">
+            <table id="tablaProducts" class="tabla oculto">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Tipe content</th>
+                    <th>Tipe suscription</th>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="divTablaVisuals" class="divTabla">
+            <table id="tablaVisuals" class="tabla oculto">
+                <tr>
+                    <th>Visual</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Product</th>
+                    <th>Customer</th>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="divTablaSuscriptions" class="divTabla">
+            <table id="tablaSuscriptions" class="tabla oculto">
+                <tr>
+                    <th>Suscription</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Content Type</th>
+                    <th>Customer</th>
+                </tr>
             </table>
         </div>
 

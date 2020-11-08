@@ -116,6 +116,10 @@ input::placeholder {
     text-align: center;
 }
 
+.margenBoton {
+    margin-top: 5%;
+}
+
 button {
     margin: 0 auto;
     height: 30px;
